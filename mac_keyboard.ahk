@@ -17,6 +17,12 @@ AltSend(keys) {
     Send "{LAlt up}{RAlt up}" keys
 }
 
+OpenSearch() {
+    Send "{LWin up}{RWin up}{Space up}"
+    Sleep 30
+    Send "#s"
+}
+
 ; Prevent the Start menu from opening when Win is tapped by itself.
 LWin::return
 RWin::return
@@ -54,7 +60,6 @@ r::MacSend "^r"         ; Command/Win+R: refresh/reload
 [::MacSend "!{Left}"    ; Command/Win+[: back
 ]::MacSend "!{Right}"   ; Command/Win+]: forward
 SC029::MacSend "!{Esc}" ; Command/Win+`: cycle windows in z-order
-Space::Run "ms-search:" ; Command/Win+Space: Spotlight-style search
 Left::MacSend "{Home}"  ; Command/Win+Left: beginning of line
 Right::MacSend "{End}"  ; Command/Win+Right: end of line
 Up::MacSend "^{Home}"   ; Command/Win+Up: beginning of document
@@ -76,6 +81,8 @@ Esc::MacSend "^{Esc}"   ; Command/Win+Esc: Start menu fallback
 !+Tab::AltSend "#+{Tab}" ; Alt+Shift+Tab: task view with Shift held
 LWin & Tab::AltTab      ; Left Command/Win+Tab: classic app switcher
 RWin & Tab::AltTab      ; Right Command/Win+Tab: classic app switcher
+LWin & Space::OpenSearch() ; Left Command/Win+Space: Windows Search
+RWin & Space::OpenSearch() ; Right Command/Win+Space: Windows Search
 
 ; Option-style word navigation. These use Alt because Windows keyboards place it
 ; closest to the macOS Option key.
