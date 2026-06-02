@@ -17,14 +17,6 @@ AltSend(keys) {
     Send "{LAlt up}{RAlt up}" keys
 }
 
-NextApp() {
-    Send "{LWin up}{RWin up}{Alt down}{Tab}{Alt up}"
-}
-
-PreviousApp() {
-    Send "{LWin up}{RWin up}{Alt down}{Shift down}{Tab}{Shift up}{Alt up}"
-}
-
 ; Prevent the Start menu from opening when Win is tapped by itself.
 LWin::return
 RWin::return
@@ -77,13 +69,13 @@ Backspace::MacSend "+{Home}{Backspace}" ; Command/Win+Backspace: delete to line 
 ,::MacSend "^,"         ; Command/Win+Comma: preferences/settings in many apps
 /::MacSend "{F1}"       ; Command/Win+/: help
 Esc::MacSend "^{Esc}"   ; Command/Win+Esc: Start menu fallback
-Tab::NextApp()          ; Command/Win+Tab: next app
-+Tab::PreviousApp()     ; Command/Win+Shift+Tab: previous app
 #HotIf
 
 ; Swap Windows' app switching keys.
 !Tab::AltSend "#{Tab}"  ; Alt+Tab: task view, like Windows' original Win+Tab
 !+Tab::AltSend "#+{Tab}" ; Alt+Shift+Tab: task view with Shift held
+LWin & Tab::AltTab      ; Left Command/Win+Tab: classic app switcher
+RWin & Tab::AltTab      ; Right Command/Win+Tab: classic app switcher
 
 ; Option-style word navigation. These use Alt because Windows keyboards place it
 ; closest to the macOS Option key.
